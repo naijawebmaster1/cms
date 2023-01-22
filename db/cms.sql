@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Jan 22, 2023 at 11:26 AM
--- Server version: 5.7.34
--- PHP Version: 7.4.21
+-- Host: 127.0.0.1
+-- Generation Time: Jan 22, 2023 at 01:33 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -51,7 +51,7 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `categoryName` varchar(255) NOT NULL,
   `categoryDescription` longtext NOT NULL,
-  `creationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creationDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `updationDate` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -79,7 +79,7 @@ CREATE TABLE `complaintremark` (
   `complaintNumber` int(11) NOT NULL,
   `status` varchar(255) NOT NULL,
   `remark` mediumtext NOT NULL,
-  `remarkDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `remarkDate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -100,7 +100,7 @@ CREATE TABLE `state` (
   `id` int(11) NOT NULL,
   `stateName` varchar(255) NOT NULL,
   `stateDescription` tinytext NOT NULL,
-  `postingDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `postingDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `updationDate` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -124,7 +124,7 @@ CREATE TABLE `subcategory` (
   `id` int(11) NOT NULL,
   `categoryid` int(11) NOT NULL,
   `subcategory` varchar(255) NOT NULL,
-  `creationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creationDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `updationDate` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -161,10 +161,10 @@ INSERT INTO `subcategory` (`id`, `categoryid`, `subcategory`, `creationDate`, `u
 (27, 1, 'Complaints about the quality of instruction, curriculum, resources, and other academic-related issues', '2023-01-21 10:58:32', '01-01-2023 07:23:45 PM'),
 (28, 1, 'Complaints about the availability and quality of technology resources, such as computer labs, internet access, and other electronic tools', '2023-01-21 10:58:32', '01-01-2023 07:23:45 PM'),
 (29, 1, 'Complaints about the availability and quality of student services, such as counseling, health care, and job placement', '2023-01-21 10:58:32', '01-01-2023 07:23:45 PM'),
-(30, 8, 'Complaints about the cost of tuition and other expenses related to college life, such as textbooks and housing', '2023-01-21 10:58:47', '01-01-2023 07:23:45 PM'),
-(31, 8, 'Complaints about the quality of instruction, curriculum, resources, and other academic-related issues', '2023-01-21 10:58:47', '01-01-2023 07:23:45 PM'),
-(32, 8, 'Complaints about the availability and quality of technology resources, such as computer labs, internet access, and other electronic tools', '2023-01-21 10:58:47', '01-01-2023 07:23:45 PM'),
-(33, 8, 'Complaints about the availability and quality of student services, such as counseling, health care, and job placement', '2023-01-21 10:58:47', '01-01-2023 07:23:45 PM');
+(30, 8, 'Unfair Treatment', '2023-01-21 10:58:47', '22-01-2023 05:45:43 PM'),
+(31, 8, 'Unreasonable Delay', '2023-01-21 10:58:47', '22-01-2023 05:46:16 PM'),
+(32, 8, 'Un Professonal Conduct', '2023-01-21 10:58:47', '22-01-2023 05:47:11 PM'),
+(33, 8, 'Others', '2023-01-21 10:58:47', '22-01-2023 05:46:43 PM');
 
 -- --------------------------------------------------------
 
@@ -182,9 +182,9 @@ CREATE TABLE `tblcomplaints` (
   `noc` varchar(255) NOT NULL,
   `complaintDetails` mediumtext NOT NULL,
   `complaintFile` varchar(255) DEFAULT NULL,
-  `regDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `regDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` varchar(50) DEFAULT NULL,
-  `lastUpdationDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+  `lastUpdationDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -195,7 +195,8 @@ INSERT INTO `tblcomplaints` (`complaintNumber`, `userId`, `category`, `subcatego
 (1, 2, 1, 'll', 'General Query', 'oo', 'Very Severe', 'ggg', 'Screenshot 2023-01-18 at 11.33.47 AM.png', '2023-01-18 22:57:53', 'closed', '2023-01-18 23:13:16'),
 (2, 2, 1, 'Select Subcategory', 'General Query', 'oo', 'Amet voluptate qui ', 'Qui obcaecati aute aut consequatur Magni tenetur', '', '2023-01-21 00:20:45', NULL, '0000-00-00 00:00:00'),
 (3, 2, 2, 'Complaints about the quality of instruction, curriculum, resources, and other academic-related issues', 'General Query', 'oo', 'Very Severe', 'qwerty', '', '2023-01-21 11:09:36', NULL, '0000-00-00 00:00:00'),
-(4, 2, 5, 'Select Subcategory', 'General Query', 'oo', 'Sexual Assult', 'Mollit natus saepe officia deserunt et eligendi ullam ipsa earum et nostrum maxime', '', '2023-01-21 11:25:59', NULL, '0000-00-00 00:00:00');
+(4, 2, 5, 'Select Subcategory', 'General Query', 'oo', 'Sexual Assult', 'Mollit natus saepe officia deserunt et eligendi ullam ipsa earum et nostrum maxime', '', '2023-01-21 11:25:59', NULL, '0000-00-00 00:00:00'),
+(5, 7, 7, 'Sexual assult', 'General Query', 'High', 'Rape', 'I was raped', 'img-1.png', '2023-01-22 12:23:41', NULL, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -208,7 +209,7 @@ CREATE TABLE `userlog` (
   `uid` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `userip` binary(16) NOT NULL,
-  `loginTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `loginTime` timestamp NOT NULL DEFAULT current_timestamp(),
   `logout` varchar(255) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -220,7 +221,9 @@ CREATE TABLE `userlog` (
 INSERT INTO `userlog` (`id`, `uid`, `username`, `userip`, `loginTime`, `logout`, `status`) VALUES
 (1, 0, 'john@gmail.com', 0x3a3a3100000000000000000000000000, '2020-05-08 14:14:43', '', 0),
 (2, 1, 'john@gmail.com', 0x3a3a3100000000000000000000000000, '2020-05-08 14:14:50', '08-05-2020 07:44:51 PM', 1),
-(3, 1, 'john@gmail.com', 0x3a3a3100000000000000000000000000, '2020-05-08 14:16:30', '', 1);
+(3, 1, 'john@gmail.com', 0x3a3a3100000000000000000000000000, '2020-05-08 14:16:30', '', 1),
+(4, 7, 'capua@mailinator.com', 0x3a3a3100000000000000000000000000, '2023-01-22 12:22:53', '22-01-2023 05:54:31 PM', 1),
+(5, 7, 'capua@mailinator.com', 0x3a3a3100000000000000000000000000, '2023-01-22 12:31:57', '', 1);
 
 -- --------------------------------------------------------
 
@@ -234,13 +237,13 @@ CREATE TABLE `users` (
   `userEmail` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `contactNo` bigint(11) DEFAULT NULL,
-  `address` tinytext,
+  `address` tinytext DEFAULT NULL,
   `State` varchar(255) DEFAULT NULL,
   `country` varchar(255) DEFAULT NULL,
   `pincode` int(6) DEFAULT NULL,
   `userImage` varchar(255) DEFAULT NULL,
-  `regDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updationDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `regDate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updationDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
   `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -251,7 +254,11 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `fullName`, `userEmail`, `password`, `contactNo`, `address`, `State`, `country`, `pincode`, `userImage`, `regDate`, `updationDate`, `status`) VALUES
 (1, 'John Smith', 'john@gmail.com', '202cb962ac59075b964b07152d234b70', 9999999999, NULL, NULL, NULL, NULL, NULL, '2020-05-08 14:10:50', '2020-05-08 14:16:22', 1),
 (2, 'Madonna Keller', 'test@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 7067533373, '2, Engr Owoeye Street, Okuta Elerinla Estate Akure', 'oo', 'Nigeria', 340212, NULL, '2023-01-18 22:30:16', '2023-01-21 00:20:15', 1),
-(3, 'Clem Bosseth', 'bosseth@mymail.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 8109342339, NULL, NULL, NULL, NULL, NULL, '2023-01-21 14:41:38', '0000-00-00 00:00:00', 1);
+(3, 'Clem Bosseth', 'bosseth@mymail.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 8109342339, NULL, NULL, NULL, NULL, NULL, '2023-01-21 14:41:38', '0000-00-00 00:00:00', 1),
+(4, 'Len Dickerson', 'vixomised@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 0, NULL, NULL, NULL, NULL, NULL, '2023-01-22 12:09:05', '0000-00-00 00:00:00', 1),
+(5, 'Rinah Raymond', 'pehypolaro@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 0, NULL, NULL, NULL, NULL, NULL, '2023-01-22 12:09:28', '0000-00-00 00:00:00', 1),
+(6, 'Dana Whitfield', 'qeqiw@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 89, NULL, NULL, NULL, NULL, NULL, '2023-01-22 12:09:47', '0000-00-00 00:00:00', 1),
+(7, 'Calista Buck', 'capua@mailinator.com', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 4, NULL, NULL, NULL, NULL, NULL, '2023-01-22 12:22:44', '0000-00-00 00:00:00', 1);
 
 --
 -- Indexes for dumped tables
@@ -337,25 +344,25 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT for table `subcategory`
 --
 ALTER TABLE `subcategory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `tblcomplaints`
 --
 ALTER TABLE `tblcomplaints`
-  MODIFY `complaintNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `complaintNumber` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `userlog`
 --
 ALTER TABLE `userlog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
