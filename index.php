@@ -182,7 +182,7 @@ echo htmlentities($msg);
                                             <span id="user-availability-status1" style="font-size:16px;"></span>
                                         </div>
                                         <div class="form-group">
-                                            <input required type="number" class="form-control" placeholder="Phone Nmber"
+                                            <input required type="text" class="form-control" placeholder="Mat. Number"
                                                 name="contactno">
                                         </div>
                                         <div class="form-group mb-4">
